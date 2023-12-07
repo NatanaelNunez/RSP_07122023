@@ -9,28 +9,30 @@ namespace MisTest
     public class TestCocina
     {
         [TestMethod]
-        [ExpectedException(typeof(FileManagerException))]
+        [ExpectedException(typeof(FileManagerException), "Nombre de archivo inválido")]
         public void AlGuardarUnArchivo_ConNombreInvalido_TengoUnaExcepcion()
         {
-            //arrage
+            // Arrange
+            string contenido = "Test";
+            string nombreArchivoInvalido = "archivo*..txt";
 
-            //act
+            // Act
+            FileManager.Guardar(contenido, nombreArchivoInvalido, true);
 
-            //assert
-
+            // Assert
+            // La excepción debería ser lanzada en el act, por lo que no se espera un assert explícito.
         }
 
         [TestMethod]
-
         public void AlInstanciarUnCocinero_SeEspera_PedidosCero()
         {
-            //arrange
+            // Arrange
             Cocinero<Hamburguesa> cocinero = new Cocinero<Hamburguesa>("Pepe");
 
-            //act
+            // Act
             int pedidos = cocinero.CantPedidosFinalizados;
 
-            //assert
+            // Assert
             Assert.AreEqual(0, pedidos);
         }
     }
