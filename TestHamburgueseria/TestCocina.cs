@@ -13,7 +13,7 @@ namespace MisTest
         public void AlGuardarUnArchivo_ConNombreInvalido_TengoUnaExcepcion()
         {
             // Arrange
-            string contenido = "Contenido de prueba";
+            string contenido = "Contenido de TestUnitario";
             string nombreArchivoInvalido = "archivo*.txt";
 
             // Act

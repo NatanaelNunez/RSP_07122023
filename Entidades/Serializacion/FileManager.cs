@@ -40,7 +40,7 @@ namespace Entidades.Serializacion
             catch (Exception ex)
             {
                 // Captura la excepción y relanza una nueva excepción específica.
-                throw new Entidades.Exceptions.FileManagerException("Error al crear el directorio:", ex);
+                throw new Exceptions.FileManagerException("Error al crear el directorio:", ex);
             }
         }
 
@@ -64,7 +64,7 @@ namespace Entidades.Serializacion
                     // Si se especifica "append" y el archivo existe, se agregan los datos.
                     File.AppendAllText(filePath, formattedData);
                 }
-                else if (!append || !File.Exists(filePath))
+                else
                 {
                     // Si no se especifica "append" o el archivo no existe, se sobrescribe el archivo.
                     File.WriteAllText(filePath, formattedData);
@@ -72,6 +72,8 @@ namespace Entidades.Serializacion
             }
             catch (Exception ex)
             {
+                // En caso de error, guardar en un archivo de logs - Punto 6
+                FileManager.Guardar(ex.Message, "logs.txt", true);
                 // Captura la excepción y relanza una nueva excepción específica.
                 throw new Exceptions.FileManagerException("Error al guardar:", ex);
             }
