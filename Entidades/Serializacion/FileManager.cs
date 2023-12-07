@@ -64,7 +64,7 @@ namespace Entidades.Serializacion
                     // Si se especifica "append" y el archivo existe, se agregan los datos.
                     File.AppendAllText(filePath, formattedData);
                 }
-                else
+                else if (!append || !File.Exists(filePath))
                 {
                     // Si no se especifica "append" o el archivo no existe, se sobrescribe el archivo.
                     File.WriteAllText(filePath, formattedData);
@@ -73,7 +73,7 @@ namespace Entidades.Serializacion
             catch (Exception ex)
             {
                 // Captura la excepción y relanza una nueva excepción específica.
-                throw new Entidades.Exceptions.FileManagerException("Error al guardar:", ex);
+                throw new Exceptions.FileManagerException("Error al guardar:", ex);
             }
         }
 
