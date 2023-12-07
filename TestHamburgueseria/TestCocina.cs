@@ -13,14 +13,15 @@ namespace MisTest
         public void AlGuardarUnArchivo_ConNombreInvalido_TengoUnaExcepcion()
         {
             // Arrange
-            string contenido = "Test";
-            string nombreArchivoInvalido = "archivo*..txt";
+            string contenido = "Contenido de prueba";
+            string nombreArchivoInvalido = "archivo*.txt";
 
             // Act
-            FileManager.Guardar(contenido, nombreArchivoInvalido, true);
+            FileManager.Guardar(contenido, nombreArchivoInvalido, false);
 
             // Assert
-            // La excepción debería ser lanzada en el act, por lo que no se espera un assert explícito.
+            // La excepción se espera como atributo del atributo ExpectedException del TestMethod
+
         }
 
         [TestMethod]
